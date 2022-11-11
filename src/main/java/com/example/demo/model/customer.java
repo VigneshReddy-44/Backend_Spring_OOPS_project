@@ -1,14 +1,14 @@
 package com.example.demo.model;
 
 
-
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
+import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.ArrayList;
 @EntityScan
+@Table(name = "Customers")
 public class customer extends User {
-
     protected double wallet;
     protected ArrayList<Orders> cart_items;
     protected ArrayList<Orders> orders_list;

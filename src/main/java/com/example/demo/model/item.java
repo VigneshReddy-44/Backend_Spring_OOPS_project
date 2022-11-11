@@ -1,17 +1,25 @@
 package com.example.demo.model;
 
-import java.util.UUID;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "Inventory")
 public class item {
-    private UUID id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Item_id")
+    private int id;
+    @Column(name = "Item_name")
     private String name;
+    @Column(name = "Item_category")
     private String category;
-
+    @Column(name = "Price")
     private double price;
+    @Column(name = "Stock")
     private int stock;
 
     public item(String name, String category, int stock,double price) {
-        this.id=UUID.randomUUID();
+
         this.name = name;
         this.category = category;
         this.stock = stock;
@@ -22,9 +30,6 @@ public class item {
         stock--;
     }
 
-    public UUID getId() {
-        return id;
-    }
 
     public String getName() {
         return name;
@@ -48,6 +53,10 @@ public class item {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public int getId() {
+        return id;
     }
 }
 
