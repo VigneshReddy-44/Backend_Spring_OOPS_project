@@ -17,7 +17,9 @@ public class item {
     private double price;
     @Column(name = "Stock")
     private int stock;
+    public item(){
 
+    }
     public item(String name, String category, int stock,double price) {
 
         this.name = name;

@@ -11,12 +11,14 @@ public class customer extends User {
     @Column(name = "wallet")
     protected double wallet;
 @OneToMany(targetEntity = Cart_items.class,cascade = CascadeType.ALL)
-@JoinColumn(name="cp_fk_cart",referencedColumnName = "Cart_items_id")
+@JoinColumn(name="cp_fk_cart")
     protected List<Cart_items> cart_items;
 @OneToMany(targetEntity = Orders.class,cascade = CascadeType.ALL)
-@JoinColumn(name="cp_fk_order",referencedColumnName = "Orders_id")
+@JoinColumn(name="cp_fk_order")
     protected List<Orders> orders_list;
+    public customer(){
 
+    }
     public customer(String name, int mobileNumber, String email, String password) {
         super(name, mobileNumber, email, password,"Customer");
 //        this.cart_items = new List<>();

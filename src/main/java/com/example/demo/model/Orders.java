@@ -8,8 +8,7 @@ import java.time.LocalDate;
 public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Order_id")
-    private int id;
+    private int orders_id;
     @ManyToOne
     private item ordered_item;
     @Column(name = "Quantity")
@@ -22,7 +21,9 @@ public class Orders {
     private int month;
     @Column(name = "Year")
     private int year;
+    public Orders(){
 
+    }
     public Orders(item ordered_item, int quantity, LocalDate date) {
         this.ordered_item = ordered_item;
         this.quantity = quantity;

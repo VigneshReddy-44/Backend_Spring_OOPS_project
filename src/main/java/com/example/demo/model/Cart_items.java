@@ -7,13 +7,16 @@ import javax.persistence.*;
 public class Cart_items {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int cart_items_id;
 
     @ManyToOne
     private item ordered_item;
 
     @Column(name = "Quantity")
     private int quantity;
+    public Cart_items(){
+
+    }
 
     public Cart_items(item ordered_item, int quantity) {
         this.ordered_item = ordered_item;
