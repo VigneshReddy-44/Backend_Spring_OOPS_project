@@ -1,16 +1,17 @@
 package com.example.demo.model;
 
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Manager extends User{
-    static ArrayList<item> item_list;
+    static List<item> item_list;
     public Manager(String name, int mobileNumber, String email, String password) {
         super(name, mobileNumber, email, password,"Manager");
     }
 
-    public ArrayList<item> getItem_list() {
+    public List<item> getItem_list() {
         return item_list;
+
     }
     public void addItem(item c){
         int i;

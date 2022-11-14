@@ -1,26 +1,30 @@
 package com.example.demo.model;
 
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-@EntityScan
+import java.util.List;
+
+@Entity
 @Table(name = "Customers")
 public class customer extends User {
+    @Column(name = "wallet")
     protected double wallet;
-    protected ArrayList<Orders> cart_items;
-    protected ArrayList<Orders> orders_list;
+@OneToMany(targetEntity = Cart_items.class,cascade = CascadeType.ALL)
+@JoinColumn(name="cp_fk_cart",referencedColumnName = "Cart_items_id")
+    protected List<Cart_items> cart_items;
+@OneToMany(targetEntity = Orders.class,cascade = CascadeType.ALL)
+@JoinColumn(name="cp_fk_order",referencedColumnName = "Orders_id")
+    protected List<Orders> orders_list;
 
     public customer(String name, int mobileNumber, String email, String password) {
         super(name, mobileNumber, email, password,"Customer");
-        this.cart_items = new ArrayList<>();
-        this.orders_list=new ArrayList<>();
+//        this.cart_items = new List<>();
+//        this.orders_list=new List<>();
     }
 
 
-    public ArrayList<Orders> getCart_items() {
+    public List<Cart_items> getCart_items() {
         return cart_items;
     }
 
@@ -37,10 +41,11 @@ public class customer extends User {
     public void checkOut() {
         System.out.println(cartEstimate());
         for(int i=0;i<getCart_items().size();i++){
-            orders_list.add(getCart_items().get(i));
+            Orders o=new Orders(getCart_items().get(i).getOrdered_item(),getCart_items().get(i).getQuantity(), LocalDate.now());
+            orders_list.add(o);
 
         }
-        cart_items=new ArrayList<>();
+        cart_items.clear();
         return;
     }
     public void printOrderList(){
@@ -51,16 +56,16 @@ public class customer extends User {
 
     }
 
-    @Override
-    public void removeUser() {
-        Admin.getCustomer_list().remove(this);
-    }
+//    @Override
+//    public void removeUser() {
+//        Admin.getCustomer_list().remove(this);
+//    }
 
     public double getWallet() {
         return wallet;
     }
 
-    public ArrayList<Orders> getOrders_list() {
+    public List<Orders> getOrders_list() {
         return orders_list;
     }
 }
