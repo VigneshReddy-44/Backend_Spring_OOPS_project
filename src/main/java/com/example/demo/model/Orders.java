@@ -9,7 +9,7 @@ public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int orders_id;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private item ordered_item;
     @Column(name = "Quantity")
     private int quantity;
