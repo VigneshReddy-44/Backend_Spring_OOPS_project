@@ -17,6 +17,19 @@ public class item {
     private double price;
     @Column(name = "Stock")
     private int stock;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public item(){
 
     }
