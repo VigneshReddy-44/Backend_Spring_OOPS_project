@@ -70,6 +70,10 @@ public class customer extends User {
     public List<Orders> getOrders_list() {
         return orders_list;
     }
+
+    public void setWallet(double wallet) {
+        this.wallet = wallet;
+    }
 }
 
 

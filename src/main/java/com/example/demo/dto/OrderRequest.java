@@ -1,6 +1,5 @@
 package com.example.demo.dto;
 
-import com.example.demo.model.customer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +10,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class OrderRequest {
-    private customer c1;
+    private int id_customer;
+    private int id_item;
+    private int quantity_requested;
 
 }
