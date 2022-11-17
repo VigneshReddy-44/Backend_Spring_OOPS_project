@@ -38,4 +38,8 @@ public class Cart_items {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    public int getCart_items_id() {
+        return cart_items_id;
+    }
 }

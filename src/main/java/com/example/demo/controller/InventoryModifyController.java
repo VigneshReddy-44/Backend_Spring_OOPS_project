@@ -27,4 +27,6 @@ public class InventoryModifyController {
     public List<item> findAllInInventory(){
         return inventoryRepository.findAll();
     }
+    //@DeleteMapping("/DeleteItemFromInventory")
+
 }
