@@ -20,33 +20,31 @@ public class AddCustomerController {
 
         customer temp = new customer();
         int count = 0;
-        int var = request.getMobileNumber();
-        while (var != 0) {
-            var /= 10;
-            ++count;
-        }
-        if(count == 10){
+        String var = request.getMobileNumber();
+        if(request.getMobileNumber().length()!=10){
+            System.out.println("Invalid phone number");
+            temp.setMobileNumber(null);
+        }else{
             temp.setMobileNumber(request.getMobileNumber());
         }
-        else{
-            System.out.println("Invalid phone number");
-        }
 
 
-        //mmtemp.setId(request.getCustomerId());
+
+
+        //temp.setId(request.getCustomerId());
         temp.setName(request.getName());
         temp.setWallet(2000);
         temp.setPassword(request.getPassword());
 
         List<customer> customerList=customerRepository.findAll();
         for(int i=0;i<customerList.size();i++){
-            if(request.getEmail() == customerList.get(i).getEmail()){
+            if(request.getEmail() .equals( customerList.get(i).getEmail())){
                 System.out.println("Username already exists");
+                return null;
             }
-            else{
-                temp.setEmail(request.getEmail());
-            }
+
         }
+        temp.setEmail(request.getEmail());
         return customerRepository.save(temp);
 
     }

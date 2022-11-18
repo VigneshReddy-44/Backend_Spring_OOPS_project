@@ -22,7 +22,7 @@ public class User {
     @Column(name = "Name")
     protected String name;
     @Column(name="Mobile_Number")
-    protected int mobileNumber;
+    protected String mobileNumber;
     @Column(name = "Email")
     protected String email;
     @Column(name = "User_Category")
@@ -34,7 +34,7 @@ public class User {
         return type_of_user;
     }
 
-    public User(String name, int mobileNumber, String email, String password, String type_of_user) {
+    public User(String name, String mobileNumber, String email, String password, String type_of_user) {
 //        this.id=UUID.randomUUID();
         this.name = name;
         this.mobileNumber = mobileNumber;
@@ -57,11 +57,11 @@ public class User {
         this.name = name;
     }
 
-    public int getMobileNumber() {
+    public String getMobileNumber() {
         return mobileNumber;
     }
 
-    public void setMobileNumber(int mobileNumber) {
+    public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
     }
 

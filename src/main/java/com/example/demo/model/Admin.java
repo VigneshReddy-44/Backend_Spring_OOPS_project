@@ -6,7 +6,7 @@ import java.util.List;
 public class Admin extends Manager {
     static List<customer> customer_list;
     //    static ArrayList<item> item_list;
-    public Admin(String name, int mobileNumber, String email,String password) {
+    public Admin(String name, String mobileNumber, String email,String password) {
         super(name, mobileNumber, email,password);
         this.type_of_user="Admin";
     }

@@ -13,7 +13,7 @@ public class customerAddRequest {
 
     //private int customerId;
     protected String name;
-    protected int mobileNumber;
+    protected String mobileNumber;
     protected String email;
     protected String password;
 

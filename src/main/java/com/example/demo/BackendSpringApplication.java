@@ -1,6 +1,5 @@
 package com.example.demo;
 
-import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -17,7 +16,7 @@ public class BackendSpringApplication  {
 
 
 	public void run(String... args) throws Exception {
-		User u1=new User(1,"Vikram",83493,"vr","Customer","oidsjf");
-		ob.save(u1);
+//		User u1=new User(1,"Vikram",83493,"vr","Customer","oidsjf");
+//		ob.save(u1);
 	}
 }

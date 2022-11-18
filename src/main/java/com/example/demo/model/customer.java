@@ -19,7 +19,7 @@ public class customer extends User {
     public customer(){
 
     }
-    public customer(String name, int mobileNumber, String email, String password) {
+    public customer(String name, String mobileNumber, String email, String password) {
         super(name, mobileNumber, email, password,"Customer");
 //        this.cart_items = new List<>();
 //        this.orders_list=new List<>();

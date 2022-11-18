@@ -53,6 +53,7 @@ public class CartItemController {
                 cartItemsList.get(j).setQuantity(cartItemsList.get(j).getQuantity()-1);
                 if(cartItemsList.get(j).getQuantity()==0){
                     cartItemsList.remove(j);
+
                 }
                 return customerRepository.save(c1);
             }

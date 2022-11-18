@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Manager extends User{
     static List<item> item_list;
-    public Manager(String name, int mobileNumber, String email, String password) {
+    public Manager(String name, String mobileNumber, String email, String password) {
         super(name, mobileNumber, email, password,"Manager");
     }
 
