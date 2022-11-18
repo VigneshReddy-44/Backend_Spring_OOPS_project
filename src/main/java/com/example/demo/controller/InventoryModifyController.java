@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.InventoryModifyRequest;
+import com.example.demo.dto.inventoryRemoveRequest;
 import com.example.demo.model.item;
 import com.example.demo.repository.InventoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,20 @@ public class InventoryModifyController {
     public List<item> findAllInInventory(){
         return inventoryRepository.findAll();
     }
-    //@DeleteMapping("/DeleteItemFromInventory")
+    @PostMapping("/DeleteItemFromInventory")
+    public void deleteItem(@RequestBody inventoryRemoveRequest request){
+        item temp=inventoryRepository.findById(request.getItem_id()).get();
+        int initialStock= temp.getStock();
+        int finalStock;
+        finalStock=initialStock- request.getQuantity();
+        if(finalStock<0){finalStock=0;}
+        temp.setStock(finalStock);
+        if(finalStock==0){
+            inventoryRepository.deleteById(request.getItem_id());
 
+        }else{
+            inventoryRepository.save(temp);
+        }
+
+    }
 }
