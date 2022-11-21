@@ -9,9 +9,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class InventoryModifyRequest {
-    private String name;
-    private String category;
-    private double price;
-    private int stock;
+public class LastMonthOrdersRequest {
+    private int customerId;
 }

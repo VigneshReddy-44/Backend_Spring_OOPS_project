@@ -41,6 +41,16 @@ public class Orders {
         return quantity;
     }
 
+    public int getDate() {
+        return date;
+    }
 
+    public int getMonth() {
+        return month;
+    }
+
+    public int getYear() {
+        return year;
+    }
 }
 
