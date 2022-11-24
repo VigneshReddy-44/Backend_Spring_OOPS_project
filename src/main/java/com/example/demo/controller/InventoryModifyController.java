@@ -14,8 +14,8 @@ import java.util.List;
 public class InventoryModifyController {
     @Autowired
     private InventoryRepository inventoryRepository;
-
-    @PutMapping("/AddItemToInventory")
+    
+    @PostMapping("/AddItemToInventory")
     item addToInventory(@RequestBody InventoryModifyRequest request){
         item i;
         i=new item(request.getName(), request.getCategory(), request.getStock(), request.getStock());
