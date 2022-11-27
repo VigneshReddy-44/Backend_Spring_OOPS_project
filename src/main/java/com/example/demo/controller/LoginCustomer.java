@@ -4,7 +4,7 @@ import com.example.demo.dto.LoginRequest;
 import com.example.demo.model.customer;
 import com.example.demo.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,12 +14,13 @@ public class LoginCustomer {
     @Autowired
     private CustomerRepository customerRepository;
 
-    @GetMapping("/Login")
+    @PostMapping("/Login")
     public customer login(@RequestBody LoginRequest request){
         List<customer> customerList=customerRepository.findAll();
+        System.out.println(customerList.get(0).getName());
         for(int i=0;i<customerList.size();i++){
-            if((customerList.get(i).getEmail().equals(request.getUsername()))){
-                if(customerList.get(i).getPassword().equals( request.getPassword())){
+            if(( customerList.get(i).getEmail()!=null &&  request.getUsername()!=null &&  customerList.get(i).getEmail().equals(request.getUsername()))){
+                if(customerList.get(i).getPassword()!=null && request.getPassword()!=null && customerList.get(i).getPassword().equals( request.getPassword())){
                     System.out.println("Logged in");
                     return customerList.get(i);
                 }
