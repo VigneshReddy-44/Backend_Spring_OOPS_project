@@ -21,7 +21,10 @@ public class AddCustomerController {
     public customer addToCustomerDB(@RequestBody customerAddRequest request) {
 
         customer temp=new customer();
-        if(request.getTypeOfCustomer().equals("customer")){
+        if(request.getTypeOfCustomer()==null){
+            temp.setType_of_user("customer");
+        }
+        else if(request.getTypeOfCustomer().equals("customer")){
             temp.setType_of_user("customer");
         }else if(request.getTypeOfCustomer().equals("manager")){
             temp.setType_of_user("manager");
