@@ -17,7 +17,7 @@ public class LoginCustomer {
     @PostMapping("/Login")
     public customer login(@RequestBody LoginRequest request){
         List<customer> customerList=customerRepository.findAll();
-        System.out.println(customerList.get(0).getName());
+//        System.out.println(customerList.get(0).getName());
         for(int i=0;i<customerList.size();i++){
             if(( customerList.get(i).getEmail()!=null &&  request.getUsername()!=null &&  customerList.get(i).getEmail().equals(request.getUsername()))){
                 if(customerList.get(i).getPassword()!=null && request.getPassword()!=null && customerList.get(i).getPassword().equals( request.getPassword())){
