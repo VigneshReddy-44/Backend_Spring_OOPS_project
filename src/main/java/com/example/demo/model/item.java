@@ -18,6 +18,8 @@ public class item {
     @Column(name = "Stock")
     private int stock;
 
+    @Column(name = "imageUrl")
+    private String imageUrl;
     public void setName(String name) {
         this.name = name;
     }
@@ -33,12 +35,13 @@ public class item {
     public item(){
 
     }
-    public item(String name, String category, int stock,double price) {
+    public item(String name, String category, int stock,double price,String imageUrl) {
 
         this.name = name;
         this.category = category;
         this.stock = stock;
         this.price=price;
+        this.imageUrl=imageUrl;
     }
 
     public void checked_out(){

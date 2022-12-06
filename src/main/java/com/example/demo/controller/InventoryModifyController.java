@@ -25,7 +25,7 @@ public class InventoryModifyController {
         }
 
         item i;
-        i=new item(request.getName(), request.getCategory(), request.getStock(), request.getStock());
+        i=new item(request.getName(), request.getCategory(), request.getStock(), request.getStock(), request.getImageUrl());
         return inventoryRepository.save(i);
     }
     @GetMapping("/Inventory")

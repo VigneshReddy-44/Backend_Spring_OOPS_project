@@ -14,4 +14,5 @@ public class InventoryModifyRequest {
     private String category;
     private double price;
     private int stock;
+    private String imageUrl;
 }
