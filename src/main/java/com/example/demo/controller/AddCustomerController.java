@@ -20,7 +20,15 @@ public class AddCustomerController {
     @PutMapping("/addCustomer")
     public customer addToCustomerDB(@RequestBody customerAddRequest request) {
 
-        customer temp = new customer();
+        customer temp=new customer();
+        if(request.getTypeOfCustomer().equals("customer")){
+            temp.setType_of_user("customer");
+        }else if(request.getTypeOfCustomer().equals("manager")){
+            temp.setType_of_user("manager");
+        }else{
+            temp.setType_of_user("admin");
+        }
+
         int count = 0;
         String var = request.getMobileNumber();
         if(request.getMobileNumber().length()!=10){
@@ -34,8 +42,9 @@ public class AddCustomerController {
 
 
         //temp.setId(request.getCustomerId());
+//        temp.setType_of_user("customer");
         temp.setName(request.getName());
-        temp.setWallet(2000);
+        temp.setWallet(4000);
         temp.setPassword(request.getPassword());
 
         List<customer> customerList=customerRepository.findAll();

@@ -16,5 +16,6 @@ public class customerAddRequest {
     protected String mobileNumber;
     protected String email;
     protected String password;
+    protected String typeOfCustomer;
 
 }
