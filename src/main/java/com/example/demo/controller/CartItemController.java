@@ -47,12 +47,22 @@ public class CartItemController {
         int customer_id=request.getCustomer_id();
         customer c1=customerRepository.findById(customer_id).get();
         item i=inventoryRepository.findById(item_id).get();
+
         List<Cart_items> cartItemsList=c1.getCart_items();
         for(int j=0;j<cartItemsList.size();j++){
             if(cartItemsList.get(j).getOrdered_item().getId()==item_id){
                 cartItemsList.get(j).setQuantity(cartItemsList.get(j).getQuantity()-1);
                 if(cartItemsList.get(j).getQuantity()==0){
                     cartItemsList.remove(j);
+                    List<customer> customerList=customerRepository.findAll();
+                    for(int k=0;k<customerList.size();k++){
+                        List<Cart_items> custiCart=customerList.get(k).getCart_items();
+                        for(int l=0;l<custiCart.size();l++){
+                            if(custiCart.get(l).getOrdered_item().getId()==request.getItem_id()){
+                                custiCart.remove(l);
+                            }
+                        }
+                    }
 
                 }
                 return customerRepository.save(c1);
