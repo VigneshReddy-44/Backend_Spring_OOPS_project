@@ -12,4 +12,5 @@ import lombok.ToString;
 public class cartItemAddRequest {
     private int customerId;
     private int item_id;
+    private int quantity;
 }

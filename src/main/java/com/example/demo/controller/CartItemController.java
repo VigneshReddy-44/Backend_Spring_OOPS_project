@@ -33,7 +33,7 @@ public class CartItemController {
         for(int i=0;i<cartItemsList.size();i++){
             int id_in_cart=cartItemsList.get(i).getOrdered_item().getId();
             if(id_in_cart==item_id){
-                cartItemsList.get(i).setQuantity(cartItemsList.get(i).getQuantity()+1);
+                cartItemsList.get(i).setQuantity(request.getQuantity());
                 return customerRepository.save(c1);
             }
         }
