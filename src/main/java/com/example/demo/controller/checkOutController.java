@@ -33,10 +33,16 @@ public class checkOutController {
                 item temp=cartItemsList.get(i).getOrdered_item();
                 item inv=inventoryRepository.findById(temp.getId()).get();
                 if(cartItemsList.get(i).getQuantity()>inv.getStock()){
-                    return null;
+                    return new customer("INSUFFICIENT STOCK",null,null,null);
                 }
             }
-            System.out.println("hi");
+            double cartPrice=c.cartEstimate();
+            double balance=c.getWallet()-cartPrice;
+            if(balance<0){
+                return new customer("INSUFFICIENT BALANCE",null,null,null);
+            }
+
+            c.setWallet(balance);
             List<Orders> orders=c.getOrders_list();
             for(int i=0;i<cartItemsList.size();i++){
                 inventoryRepository.findById(cartItemsList.get(i).getOrdered_item().getId()).get().setStock(inventoryRepository.findById(cartItemsList.get(i).getOrdered_item().getId()).get().getStock()-cartItemsList.get(i).getQuantity());
