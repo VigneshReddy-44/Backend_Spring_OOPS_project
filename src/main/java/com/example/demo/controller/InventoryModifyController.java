@@ -2,14 +2,13 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.InventoryModifyRequest;
 import com.example.demo.dto.inventoryRemoveRequest;
+import com.example.demo.model.Cart_items;
+import com.example.demo.model.customer;
 import com.example.demo.model.item;
 import com.example.demo.repository.CustomerRepository;
 import com.example.demo.repository.InventoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,15 +81,34 @@ public class InventoryModifyController {
         }
         return res;
     }
-    @PostMapping("/DeleteItemFromInventory")
+    @PutMapping("/DeleteItemFromInventory")
     public void deleteItem(@RequestBody inventoryRemoveRequest request){
         item temp=inventoryRepository.findById(request.getItem_id()).get();
         int initialStock= temp.getStock();
         int finalStock;
         finalStock=initialStock- request.getQuantity();
-        if(finalStock<0){finalStock=0;}
+        if(finalStock<0){
+            finalStock=0;
+            if(finalStock==0){
+                List<customer> customerList=customerRepository.findAll();
+                for(int k=0;k<customerList.size();k++){
+                    List<Cart_items> custiCart=customerList.get(k).getCart_items();
+                    for(int l=0;l<custiCart.size();l++){
+                        if(custiCart.get(l).getOrdered_item().getId()==request.getItem_id()){
+                            custiCart.remove(l);
+                        }
+                    }
+                }
+                inventoryRepository.deleteById(request.getItem_id());
+
+            }else{
+                inventoryRepository.save(temp);
+            }
+            inventoryRepository.deleteById(request.getItem_id());
+        }
         temp.setStock(finalStock);
         inventoryRepository.save(temp);
+        inventoryRepository.deleteById(request.getItem_id());
 //        if(finalStock==0){
 //            List<customer> customerList=customerRepository.findAll();
 //            for(int k=0;k<customerList.size();k++){
